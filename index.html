@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>สมัครสมาชิกรายเดือน</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: #f8f8f9;
+      margin: 0;
+      padding: 20px;
+      color: #071952;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      max-width: 900px;
+      width: 100%;
+      display: flex;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
+      overflow: hidden;
+    }
+    .left, .right {
+      padding: 32px;
+      flex: 1;
+    }
+    .left {
+      border-right: 1px solid #ddd;
+    }
+    h2 {
+      margin-top: 0;
+      font-weight: 600;
+      font-size: 22px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 16px;
+      margin-top: 16px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .package {
+      margin-top: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .package input {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    button {
+      margin-top: 32px;
+      width: 100%;
+      background-color: #071952;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:disabled {
+      background-color: #555a7e;
+      cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+      background-color: #0a1a4a;
+    }
+    .qr-section {
+      margin-top: 24px;
+      text-align: center;
+    }
+    .qr-section img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      background-color: white;
+    }
+    .qr-section p {
+      margin-top: 12px;
+      font-size: 16px;
+    }
+    .success-code {
+      margin-top: 32px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+      text-align: center;
+      color: #0a7c3c;
+      font-weight: 600;
+      font-size: 20px;
+    }
+    .success-code p.code {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1.2;
+      margin: 8px 0 0;
+    }
+    .payment-method {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #071952;
+    }
+    .payment-method svg {
+      margin-right: 8px;
+      fill: #071952;
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h2>รายละเอียดการสมัคร</h2>
+      <label for="phoneEmail">เบอร์โทรศัพท์ / อีเมล</label>
+      <input id="phoneEmail" type="text" placeholder="0812345678 หรือ you@mail.com" />
+
+      <label>เลือกแพ็กเกจ</label>
+      <label class="package">
+        <input type="radio" name="package" value="99" />
+        1 สัปดาห์ – 99 บาท
+      </label>
+      <label class="package">
+        <input type="radio" name="package" value="299" />
+        1 เดือน – 299 บาท
+      </label>
+      <label class="package">
+        <input type="radio" name="package" value="1190" />
+        1 ปี – 1190 บาท
+      </label>
+
+      <div class="qr-section" id="qrSection" style="display:none;">
+        <h2>สแกน QR พร้อมเพย์</h2>
+        <img id="qrImage" src="" alt="QR PromptPay" />
+        <p>ยอดที่ต้องชำระ: <strong id="amountText"></strong> บาท</p>
+      </div>
+    </div>
+    <div class="right">
+      <h2>วิธีชำระเงิน</h2>
+      <div class="payment-method">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,4 L19,4 C20.1,4 21,4.9 21,6 L21,18 C21,19.1 20.1,20 19,20 L5,20 C3.9,20 3,19.1 3,18 L3,6 C3,4.9 3.9,4 5,4 Z M12,16 L17,16 L17,14 L12,14 L12,16 Z M7,16 L10,16 L10,14 L7,14 L7,16 Z M12,12 L17,12 L17,10 L12,10 L12,12 Z M7,12 L10,12 L10,10 L7,10 L7,12 Z" /></svg>
+        QR พร้อมเพย์
+      </div>
+
+      <button id="payBtn">ชำระเงิน</button>
+
+      <div class="success-code" id="successCode" style="display:none;">
+        <p>ชำระเงินสำเร็จ</p>
+        <p>โค้ด Redeem ของคุณคือ</p>
+        <p class="code" id="redeemCodeText"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const promptpayNumber = "0925384159";
+    const payBtn = document.getElementById("payBtn");
+    const phoneEmailInput = document.getElementById("phoneEmail");
+    const qrSection = document.getElementById("qrSection");
+    const qrImage = document.getElementById("qrImage");
+    const amountText = document.getElementById("amountText");
+    const successCode = document.getElementById("successCode");
+    const redeemCodeText = document.getElementById("redeemCodeText");
+
+    let selectedPackage = null;
+
+    document.querySelectorAll('input[name="package"]').forEach(radio => {
+      radio.addEventListener("change", () => {
+        selectedPackage = radio.value;
+        qrSection.style.display = "block";
+        qrImage.src = `https://promptpay.io/${promptpayNumber}/${selectedPackage}.png`;
+        amountText.textContent = selectedPackage;
+        successCode.style.display = "none";
+      });
+    });
+
+    function generateRedeemCode() {
+      const part1 = Math.random().toString(36).substring(2, 6).toUpperCase();
+      const part2 = Math.random().toString(36).substring(2, 6).toUpperCase();
+      return `${part1}-${part2}`;
+    }
+
+    payBtn.addEventListener("click", () => {
+      const phoneEmail = phoneEmailInput.value.trim();
+      if (!phoneEmail) {
+        alert("กรุณากรอกเบอร์โทรศัพท์ หรืออีเมล");
+        return;
+      }
+      if (!selectedPackage) {
+        alert("กรุณาเลือกแพ็กเกจ");
+        return;
+      }
+
+      payBtn.disabled = true;
+      payBtn.textContent = "กำลังรอการชำระ...";
+
+      // แสดง QR ให้ลูกค้าสแกน
+      qrSection.style.display = "block";
+
+      // สมมติว่าโอนเสร็จผ่านไป 7 วินาที (ให้คุณเปลี่ยน logic ตรวจสอบโอนจริงได้)
+      setTimeout(() => {
+        const redeemCode = generateRedeemCode();
+        redeemCodeText.textContent = redeemCode;
+        successCode.style.display = "block";
+        payBtn.disabled = false;
+        payBtn.textContent = "ชำระเงิน";
+
+        // ส่งข้อมูลไป Google Apps Script
+        fetch("https://script.google.com/macros/s/AKfycbzZz43qePZLX1CsmDwsuiYGh49kdDuV_HD3-5IEkjk4p2OVcDaXzMryZFnxO83AHRJI/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            phoneOrEmail: phoneEmail,
+            packageName: `${selectedPackage} บาท`,
+            amount: Number(selectedPackage),
+            redeemCode: redeemCode,
+            status: "success"
+          })
+        }).catch((err) => {
+          console.error("ส่งข้อมูลล้มเหลว", err);
+        });
+      }, 7000);
+    });
+  </script>
+</body>
+</html>
