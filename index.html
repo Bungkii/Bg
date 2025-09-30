@@ -113,7 +113,7 @@
 
     <label>เลือกแพ็กเกจ</label>
     <div class="package">
-      <label><input type="radio" name="pkg" value="99"> 1 สัปดาห์ – 99 บาท</label>
+      <label><input type="radio" name="pkg" value="89"> 1 สัปดาห์ – 89 บาท</label>
       <label><input type="radio" name="pkg" value="299"> 1 เดือน – 299 บาท</label>
       <label><input type="radio" name="pkg" value="1190"> 1 ปี – 1190 บาท</label>
     </div>
@@ -147,7 +147,7 @@
 
     document.querySelectorAll('input[name="pkg"]').forEach(radio => {
       radio.addEventListener("change", () => {
-      selectedAmount = radio.value;
+      selectedAmount = parseInt(radio.value);
       qrImg.src = `https://promptpay.io/${promptpayNumber}/${selectedAmount}`;
       amtText.textContent = selectedAmount;
       qrBox.style.display = "block";
@@ -200,6 +200,7 @@
   </script>
 </body>
 </html>
+
 
 
 
