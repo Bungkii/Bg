@@ -204,11 +204,11 @@
     payBtn.addEventListener("click", () => {
       const phoneEmail = phoneEmailInput.value.trim();
       if (!phoneEmail) {
-        alert("กรุณากรอกเบอร์โทรศัพท์ หรืออีเมล");
+        alert("บอกชื่อมาเด้");
         return;
       }
       if (!selectedPackage) {
-        alert("กรุณาเลือกแพ็กเกจ");
+        alert("เลือกแพคเกตเร้วๆ");
         return;
       }
 
@@ -224,7 +224,7 @@
         redeemCodeText.textContent = redeemCode;
         successCode.style.display = "block";
         payBtn.disabled = false;
-        payBtn.textContent = "ชำระเงิน";
+        payBtn.textContent = "จ่ายเงินกุสักที";
 
         // ส่งข้อมูลไป Google Apps Script
         fetch("https://script.google.com/macros/s/AKfycbzZz43qePZLX1CsmDwsuiYGh49kdDuV_HD3-5IEkjk4p2OVcDaXzMryZFnxO83AHRJI/exec", {
@@ -245,5 +245,6 @@
   </script>
 </body>
 </html>
+
 
 
