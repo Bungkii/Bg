@@ -147,13 +147,14 @@
 
     document.querySelectorAll('input[name="pkg"]').forEach(radio => {
       radio.addEventListener("change", () => {
-        selectedAmount = radio.value;
-        qrImg.src = `https://promptpay.io/${promptpayNumber}/${selectedAmount}.png`;
-        amtText.textContent = selectedAmount;
-        qrBox.style.display = "block";
-        successMsg.style.display = "none";
-      });
+      selectedAmount = radio.value;
+      qrImg.src = `https://promptpay.io/${promptpayNumber}/${selectedAmount}`;
+      amtText.textContent = selectedAmount;
+      qrBox.style.display = "block";
+      successMsg.style.display = "none";
     });
+  });
+
 
     function generateRedeemCode() {
       const part1 = Math.random().toString(36).substr(2, 4).toUpperCase();
@@ -168,7 +169,7 @@
         return;
       }
       if (!selectedAmount) {
-        alert("กรุณาเลือกแพ็กเกจ");
+        alert("เลือกแพ็กเกจดิวะ");
         return;
       }
 
@@ -194,9 +195,10 @@
             status: "success"
           })
         }).catch(err => console.error("ส่งข้อมูลล้มเหลว", err));
-      }, 6000); // รอ 6 วินาทีสมมุติว่าโอนเสร็จ
+      }, 10000); // รอ 6 วินาทีสมมุติว่าโอนเสร็จ
     });
   </script>
 </body>
 </html>
+
 
