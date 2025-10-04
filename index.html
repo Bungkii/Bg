@@ -106,14 +106,22 @@
 </head>
 <body>
   <div class="container">
-    <h2>สมัครพรีเมี่ยมให้ Bungkii</h2>
+    <h2>เลือกสักอัน Bungkii</h2>
 
     <label for="userId">ชื่อIGมึงอะ</label>
     <input id="userId" type="text" placeholder="เอาไอจีมึงมา">
 
-    <label>เลือกแพ็กเกจ</label>
+    <label>เลี้ยงไรดี</label>
     <div class="package">
       <label><input type="radio" name="pkg" value="8"> ซื้อยุกิ – 8 บาท</label>
+      <label><input type="radio" name="pkg" value="100"> เลี้ยงข้าวหน่อย – 100 บาท</label>
+      <label><input type="radio" name="pkg" value="35"> จ่ายค่าส่งด้วย – 35 บาท</label>
+      <label><input type="radio" name="pkg" value="276"> ตี๋น้อยมะ – 276 บาท</label>
+      <label><input type="radio" name="pkg" value="679"> โมโม่ก้ได้ – 679 บาท</label>
+      </div>
+
+    <label>ไม่สำคัน</label>
+    <div class="package">
       <label><input type="radio" name="pkg" value="89"> 1 สัปดาห์ – 89 บาท</label>
       <label><input type="radio" name="pkg" value="299"> 1 เดือน – 299 บาท</label>
       <label><input type="radio" name="pkg" value="1190"> 1 ปี – 1190 บาท</label>
@@ -125,7 +133,7 @@
       <p>ยอด: <strong id="amtText">-</strong> บาท</p>
     </div>
 
-    <button id="payBtn">ชำระเงิน</button>
+    <button id="payBtn">จ่ายเลย😘😘</button>
 
     <div class="success" id="successMsg">
         <p>กุได้เงินมึงละ</p>
@@ -196,8 +204,9 @@
             status: "success"
           })
         }).catch(err => console.error("สลิปปลอมป่าวมึงอะ", err));
-      }, 10000);
+      }, 5000);
     });
   </script>
 </body>
 </html>
+
