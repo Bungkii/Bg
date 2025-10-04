@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bungkii</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
     body {
       font-family: 'Kanit', sans-serif;
       background-color: #f8f8f9;
@@ -185,7 +185,7 @@
         payBtn.textContent = "ชำระเงิน";
 
         // ส่งข้อมูลไป Google Apps Script
-        fetch("https://script.google.com/macros/s/AKfycbzZz43qePZLX1CsmDwsuiYGh49kdDuV_HD3-5IEkjk4p2OVcDaXzMryZFnxO83AHRJI/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbyyCsucbUJQd_64qDXu5aiHN26ioEcf_C6KkviRALIDGpnGYY3B3TfU0uopW4_XmmjQ/exec", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -195,15 +195,9 @@
             redeemCode: code,
             status: "success"
           })
-        }).catch(err => console.error("ส่งข้อมูลล้มเหลว", err));
-      }, 10000); // รอ 6 วินาทีสมมุติว่าโอนเสร็จ
+        }).catch(err => console.error("สลิปปลอมป่าวมึงอะ", err));
+      }, 10000);
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-
